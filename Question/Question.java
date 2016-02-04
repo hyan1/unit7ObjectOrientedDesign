@@ -23,7 +23,12 @@ public class Question
    {
       text = questionText;
    }
-
+   
+   public void addText( String questionText)
+   {
+       text += questionText;
+   }
+   
    /**
       Sets the answer for this question.
       @param correctResponse the answer
@@ -40,7 +45,7 @@ public class Question
    */
    public boolean checkAnswer(String response)
    {
-      return response.equals(answer);
+      return response.toLowerCase().equals(answer.toLowerCase());
    }
 
    /**
@@ -50,4 +55,13 @@ public class Question
    {
       System.out.println(text);
    }
+   
+   public String toString()
+   {
+       String str = "";
+       str+="Question Text: "+this.text+"\n";
+       str+="Answer: "+this.answer+"\n";
+       return str;
+    }
+       
 }
