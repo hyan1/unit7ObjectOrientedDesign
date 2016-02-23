@@ -1,19 +1,23 @@
 import java.awt.*;
-import javax.swing.*;
+import java.
 
-public class TriangleGUIComponent
+/**
+ * Write a description of class DrawingPanel here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class DrawingPanel
 {
-    private static final int a = 100;
-    private static final int b = 100;
-    private static final int c = 100;
-    
-    private Polygon trangle;
+    /** description of instance variable x (add comment for each instance variable) */
+    private int x;
 
     /**
-     * Default constructor for objects of class TrangleGUIComponent
+     * Default constructor for objects of class DrawingPanel
      */
-    public TriangleGUIComponent()
+    public DrawingPanel()
     {
+        // initialise instance variables
         x = 0;
     }
 
