@@ -1,40 +1,49 @@
-
-
+import javax.swing.JColorChooser;
+import javax.swing.JFrame;
+import java.awt.Color;
+  
 /**
- * Write a description of class DrawingEditor here.
+ * A class to make working with a color chooser easier
+ * for students.  It uses a JColorChooser to let the user
+ * pick a color and returns the chosen color object.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Barb Ericson ericson@cc.gatech.edu
  */
 public class DrawingEditor
 {
-    /** description of instance variable x (add comment for each instance variable) */
-    private int x;
-
-    /**
-     * Default constructor for objects of class DrawingEditor
-     */
-    public DrawingEditor()
-    {
-        // initialise instance variables
-        x = 0;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *    that describes the operation of the method
-     *
-     * @pre        preconditions for the method
-     *            (what the method assumes about the method's parameters and class's state)
-     * @post    postconditions for the method
-     *            (what the method guarantees upon completion)
-     * @param    y    description of parameter y
-     * @return    description of the return value
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x+y;
-    }
-
+  
+  /**
+   * Method to let the user pick a color and return
+   * the color object. 
+   * @return the picked color or red if no color was picked
+   */
+  public static Color pickAColor()
+  {
+    Color color = Color.white;
+    
+    
+    
+    
+    
+    // create a JFrame to be the parent of the color chooser open dialog
+    // if you don't do this then you may not see the dialog.
+    JFrame frame = new JFrame();
+    frame.setAlwaysOnTop(true);
+    
+    
+    // use the color chooser to pick the color
+    color = JColorChooser.showDialog(frame,"Pick a color",color);
+    
+    return color;
+  }
+  
+  /** Main method for testing the ColorChooser */
+  public static void main(String[] args)
+  {
+    Color pickedColor = DrawingEditor.pickAColor();
+    System.out.println(pickedColor);
+  }
+  
+  
+  
 }

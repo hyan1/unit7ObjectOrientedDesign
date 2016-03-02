@@ -1,20 +1,13 @@
 import java.awt.*;
-import java.
+import java.swing.*;
 
-/**
- * Write a description of class DrawingPanel here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class DrawingPanel
 {
-    /** description of instance variable x (add comment for each instance variable) */
-    private int x;
+    private DrawingEditor component;
+    
+    private static final int FRAME_WIDTH = 500;
+    private 
 
-    /**
-     * Default constructor for objects of class DrawingPanel
-     */
     public DrawingPanel()
     {
         // initialise instance variables
