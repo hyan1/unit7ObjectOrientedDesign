@@ -1,6 +1,6 @@
-import javax.swing.JColorChooser;
-import javax.swing.JFrame;
-import java.awt.Color;
+
+import javax.swing.*;
+import java.awt.*;
   
 /**
  * A class to make working with a color chooser easier
@@ -11,39 +11,33 @@ import java.awt.Color;
  */
 public class DrawingEditor
 {
+  private ControlPanel control;
+  private DrawingPanel canvas;
   
+  private int WINDOW_HEIGHT = 1000;
+  private int WINDOW_LENGTH = 1000;
   /**
    * Method to let the user pick a color and return
    * the color object. 
    * @return the picked color or red if no color was picked
    */
-  public static Color pickAColor()
+  public static DrawingEditor()
   {
-    Color color = Color.white;
-    
-    
-    
-    
-    
-    // create a JFrame to be the parent of the color chooser open dialog
-    // if you don't do this then you may not see the dialog.
-    JFrame frame = new JFrame();
-    frame.setAlwaysOnTop(true);
-    
-    
-    // use the color chooser to pick the color
-    color = JColorChooser.showDialog(frame,"Pick a color",color);
-    
-    return color;
+      this.setTitle("Drawing Editor");
+      DrawingPanel canvas = newDrawingPanel();
+      ControlPanel control = newControlPanel(canvas);
+      
+      this.setLayout(new BorderLayout());
+      this.add(controls, (BorderLayout.SOUTH));
+      this.add(canvas, BorderLayout.CENTER);
+      
+      this.setSize(WINDOW_LENGTH, WINDOW_HEIGHT);
+      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      this.setVisible(true);
   }
   
-  /** Main method for testing the ColorChooser */
   public static void main(String[] args)
   {
-    Color pickedColor = DrawingEditor.pickAColor();
-    System.out.println(pickedColor);
+      DrawingEditor editor = new DrawingEditor();
   }
-  
-  
-  
 }
