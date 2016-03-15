@@ -39,7 +39,7 @@ public class ControlPanel extends JPanel
         
         ClickListener listener = new ClickListener();
         this.colorButton.addActionListener(listener); 
-        this.circle.addActionListener(listener); //you need this to register the listener
+        this.circle.addActionListener(listener); 
         this.square.addActionListener(listener); 
         this.canvas = canvas;                
     }
@@ -48,7 +48,7 @@ public class ControlPanel extends JPanel
     {
         public void actionPerformed(ActionEvent event)
         {
-            if(event.getActionCommand().equals("Pick Color"))
+            if(event.getActionCommand().equals("Color"))
             {
                 canvas.pickColor();
                 System.out.println("Select Color");
