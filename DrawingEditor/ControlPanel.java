@@ -11,8 +11,8 @@ import java.awt.event.*;
 public class ControlPanel extends JPanel
 {
     private JButton colorButton;
-    private JButton circleButton;
-    private JButton squareButton;
+    private JButton circle;
+    private JButton square;
     private Color newColor;
     private JPanel squareColor;
     private DrawingPanel canvas;
@@ -23,14 +23,13 @@ public class ControlPanel extends JPanel
     public ControlPanel(DrawingPanel canvas)
     {
         this.colorButton = new JButton("Color");
-        this.add(this.colorButton);
-        newColor = canvas.getColor();
+        this.circle = new JButton("Circle");
+        this.square = new JButton("Square");
         
-        this.circleButton = new JButton("Circle");
-        this.add(this.circleButton);
-       
-        this.squareButton = new JButton("Square");
-        this.add(this.squareButton);
+        this.add(this.colorButton);
+        newColor = canvas.getColor();        
+        this.add(this.circle);
+        this.add(this.square);
         
         squareColor = new JPanel();
         newColor = canvas.getColor();
@@ -40,8 +39,8 @@ public class ControlPanel extends JPanel
         
         ClickListener listener = new ClickListener();
         this.colorButton.addActionListener(listener); 
-        this.circleButton.addActionListener(listener); //you need this to register the listener
-        this.squareButton.addActionListener(listener); 
+        this.circle.addActionListener(listener); //you need this to register the listener
+        this.square.addActionListener(listener); 
         this.canvas = canvas;                
     }
     

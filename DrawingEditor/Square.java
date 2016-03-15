@@ -18,13 +18,18 @@ public class Square extends Shape
     public Square(Point2D.Double center, double radius, Color color)
     {
         super(center, radius, color);
-        square = new Rectangle2D.Double(center.getX(), center.getY(), radius, radius);
     }
 
     public boolean isInside(Point2D.Double point)
     {
-        square = new Rectangle2D.Double(super.getCenter().getX(), super.getCenter().getY(), super.getRadius(), super.getRadius());
-        return square.contains(point);
+        if(Math.sqrt(Math.pow(getCenter().getX()-point.getX(),2)+Math.pow(getCenter().getY()-point.getY(),2))<getRadius())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     
     public boolean isOnBorder(Point2D.Double point)
@@ -37,12 +42,15 @@ public class Square extends Shape
     
     public void draw(Graphics2D g2, boolean filled)
     {
-        square = new Rectangle2D.Double(super.getCenter().getX(), super.getCenter().getY(), super.getRadius(), super.getRadius());
-        g2.draw(square);
+        Rectangle2D.Double square = new Rectangle2D.Double(getCenter().getX()-getRadius(), getCenter().getY()-getRadius(), 2*getRadius(), 2*getRadius());
         g2.setColor(super.getColor());
-        if (filled)
+        if(filled==true)
         {
             g2.fill(square);
+        }
+        else
+        {
+            g2.draw(square);
         }
     }
 }
