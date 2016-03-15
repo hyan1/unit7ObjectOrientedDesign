@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
 
 /**
  * Write a description of class ControlPanel here.
@@ -10,7 +11,7 @@ import javax.swing.*;
 public class ControlPanel extends JPanel
 {
     private JButton colorButton;
-    private JButton circleButtor;
+    private JButton circleButton;
     private JButton squareButton;
     private Color newColor;
     private JPanel squareColor;

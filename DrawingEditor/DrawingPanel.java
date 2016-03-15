@@ -1,34 +1,100 @@
 import java.awt.*;
-import java.swing.*;
+import javax.swing.*;
+import java.util.*;
+import java.awt.event.*;
+import java.awt.geom.*;
 
-public class DrawingPanel
+public class DrawingPanel extends JPanel
 {
-    private DrawingEditor component;
+    private Color color;
+    private Dimension dimension;
+    private ArrayList<Shape> shapeList;
+    private Shape currentShape;
     
-    private static final int FRAME_WIDTH = 500;
-    private 
+    private Point2D.Double startPoint = new Point2D.Double(250,250);
+    private double startRadius = 60;
+    
 
     public DrawingPanel()
     {
-        // initialise instance variables
-        x = 0;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *    that describes the operation of the method
-     *
-     * @pre        preconditions for the method
-     *            (what the method assumes about the method's parameters and class's state)
-     * @post    postconditions for the method
-     *            (what the method guarantees upon completion)
-     * @param    y    description of parameter y
-     * @return    description of the return value
-     */
-    public int sampleMethod(int y)
+        this.setBackground(Color.WHITE);
+        this.dimension = new Dimension(800, 800);
+        this.setSize(dimension);
+        
+        this.color = Color.BLACK;
+        
+        this.addMouseListener(new TheMouseListener());
+        this.addMouseMotionListener(new TheMouseListener());
+        
+        shapeList = new ArrayList<Shape>();
+    }    
+    
+    class TheMouseListener implements MouseMotionListener, MouseListener
     {
-        // put your code here
-        return x+y;
-    }
+        private boolean inside;
+        public void mouseDragged(MouseEvent event)
+        {
+            currentShape.move(event.getX(), event.getY());
+            repaint();
+        }
+        public void mouseMoved(MouseEvent event){}
+        
+        
+        public void mousePressed(MouseEvent event)
+        {
+           inside = false;
 
+            for(Shape shp: shapeList)
+            {
+                if (shp.isInside(new Point2D.Double(event.getX(), event.getY())))
+                {
+                    inside = true;
+                    currentShape = shp;
+                }            
+            }   
+            if(inside==false)
+            {
+                currentShape = null;
+            }            
+            repaint();
+        }
+
+        public void mouseReleased(MouseEvent event) {}
+        public void mouseClicked(MouseEvent event) {}
+        public void mouseEntered(MouseEvent event) {}
+        public void mouseExited(MouseEvent event) {}
+    }
+        
+        
+    
+    public Color getColor()
+    {
+        return this.color;
+    }
+    public Dimension getPreferredSize()
+    {
+        return dimension;
+    }
+    public void pickColor()
+    {
+        color = JColorChooser.showDialog(this, "Pick Color", color);
+    }
+    public void addCircle()
+    {
+        shapeList.add(new Circle(startPoint, startRadius, color));
+    }
+    
+    public void addSquare()
+    {
+        shapeList.add(new Square(startPoint, startRadius, color));
+    }
+    public void paintComponent(Graphics g)
+    {
+        Graphics2D g2 = (Graphics2D) g;
+        super.paintComponent(g);
+        for(Shape shp: shapeList)
+        {
+            shp.draw(g2, currentShape == null? true: (!(currentShape == shp)));
+        }
+    }
 }
